@@ -8,8 +8,8 @@ Atelier is a responsive student art gallery. This endterm extends the midterm's 
 
 | Link | Address | Status |
 | --- | --- | --- |
-| Endterm repository | [atelier-art-gallery-endterm](https://github.com/znsrk/atelier-art-gallery-endterm) | Created |
-| Endterm website | [Open the gallery](https://znsrk.github.io/atelier-art-gallery-endterm/) | GitHub Pages deployment pending |
+| Endterm repository | [atelier-art-gallery-endterm](https://github.com/znsrk/atelier-art-gallery-endterm) | Verified |
+| Endterm website | [Open the gallery](https://znsrk.github.io/atelier-art-gallery-endterm/) | Published and verified |
 | Original midterm repository | [atelier-art-gallery](https://github.com/znsrk/atelier-art-gallery) | Existing project and history |
 
 **Repository choice:** The assignment document requests an update to the existing repository. This separate endterm repository follows the explicit request for a new repository and preserves the midterm commit history. Individual contribution assignments are omitted as requested; group member names are retained.
@@ -18,9 +18,16 @@ Atelier is a responsive student art gallery. This endterm extends the midterm's 
 
 No build, npm installation, database, or account is needed.
 
-1. Download or clone this repository.
+1. Download the repository using **Code ? Download ZIP** and extract it, or clone it with the command below.
 2. Open `index.html` in a modern browser.
 3. Use the navigation to explore the six original main pages: Home, Gallery, Artists, Exhibitions, About, and Contact. The **Join the gallery** link opens the new registration demonstration. `thank-you.html` is the contact form's confirmation page.
+
+To clone with Git:
+
+```sh
+git clone https://github.com/znsrk/atelier-art-gallery-endterm.git
+cd atelier-art-gallery-endterm
+```
 
 For consistent local storage behavior, serve the folder over HTTP instead of opening files directly. With Python installed, open a terminal inside this repository and run:
 
@@ -119,6 +126,8 @@ New gallery cards need matching artwork metadata (`data-title`, `data-artist`, a
 Keep the Bootstrap and jQuery license notices in `vendor/` when copying the project. Bootstrap's source is [twbs/bootstrap](https://github.com/twbs/bootstrap); jQuery's source is [jquery/jquery](https://github.com/jquery/jquery).
 
 ## Check the project
+
+**Verified:** automated checks passed locally, against the published website, and in [GitHub Actions](https://github.com/znsrk/atelier-art-gallery-endterm/actions). All eight pages were checked at 1440, 834, 390, and 320 pixels, with interaction tests on desktop and phone widths.
 
 The website runs without Python packages. The following optional commands install development dependencies and run the browser checks:
 
