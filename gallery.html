@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="vendor/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <script src="vendor/jquery.min.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/gallery.js" defer></script>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -23,6 +27,7 @@
                 <a href="exhibitions.html">Exhibitions</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
+                <a class="join-link" href="register.html">Join the gallery</a>
             </nav>
         </div>
     </header>
@@ -30,59 +35,83 @@
         <section class="page-heading container">
             <p class="eyebrow">01 / Atelier collection</p>
             <h1>The collection<span class="accent">.</span></h1>
-            <p class="page-intro">Six small windows into another world. Explore the colors, forms, and quiet details of our original digital illustrations.</p>
+            <p class="page-intro">Six small windows into another world. Find a favorite by title, artist, or category, then open a work for a closer look.</p>
         </section>
         <section class="container collection-section" aria-labelledby="works-heading">
-            <div class="collection-top"><h2 id="works-heading">All works <span class="count">06</span></h2><p>Landscapes / Abstract / Still life / Botanical</p></div>
-            <div class="art-grid">
-                <figure class="art-card" id="quiet-sun">
-                    <div class="art-image"><img src="images/quiet-sun.svg" alt="A terracotta sun above layered green hills." width="600" height="750"></div>
+            <div class="collection-top"><h2 id="works-heading">The collection <span class="count">06</span></h2><p>Landscapes / Abstract / Still life / Botanical</p></div>
+            <!-- JavaScript reveals these controls; every artwork remains available without it. -->
+            <div id="gallery-controls" class="gallery-controls" hidden>
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-8">
+                        <label for="gallery-search" class="form-label">Find an artwork</label>
+                        <input type="search" id="gallery-search" class="form-control" placeholder="Search title, artist, or category" autocomplete="off" aria-controls="artwork-grid" aria-describedby="gallery-search-help">
+                        <p id="gallery-search-help" class="caption-note">Results update as you type. You can combine your search with a category.</p>
+                    </div>
+                    <div class="col-md-4 gallery-clear-wrap"><button type="button" id="clear-gallery" class="btn outline-button">Clear search &amp; filters</button></div>
+                </div>
+                <div class="gallery-filters" role="group" aria-label="Filter artwork by category">
+                    <button type="button" class="btn filter-button active" data-category="all" aria-pressed="true">All</button>
+                    <button type="button" class="btn filter-button" data-category="landscape" aria-pressed="false">Landscape</button>
+                    <button type="button" class="btn filter-button" data-category="abstract" aria-pressed="false">Abstract</button>
+                    <button type="button" class="btn filter-button" data-category="still life" aria-pressed="false">Still life</button>
+                    <button type="button" class="btn filter-button" data-category="botanical" aria-pressed="false">Botanical</button>
+                </div>
+                <p id="gallery-result-count" class="gallery-result-count" role="status" aria-live="polite" aria-atomic="true">Showing 6 of 6 artworks.</p>
+            </div>
+            <noscript><p class="project-note">Enable JavaScript to search and filter the collection or browse the lightbox. You can still open each image below at full size.</p></noscript>
+            <div class="art-grid" id="artwork-grid">
+                <figure class="art-card" id="quiet-sun" data-category="landscape" data-title="Quiet Sun" data-artist="Mira Arden">
+                    <a class="art-image lightbox-trigger" href="images/quiet-sun.svg" aria-label="Enlarge Quiet Sun"><img src="images/quiet-sun.svg" alt="A terracotta sun above layered green hills." width="600" height="750"><span class="art-enlarge" aria-hidden="true">View artwork ↗</span></a>
                     <figcaption>
                         <span class="art-type">Landscape</span>
                         <h3>Quiet Sun</h3>
                         <p>Mira Arden <span aria-hidden="true">·</span> Digital illustration, 2026</p>
                     </figcaption>
                 </figure>
-                <figure class="art-card" id="blue-hour">
-                    <div class="art-image"><img src="images/blue-hour.svg" alt="Blue arches and a pale moon on a deep blue background." width="600" height="750"></div>
+                <figure class="art-card" id="blue-hour" data-category="abstract" data-title="Blue Hour" data-artist="Noah Vale">
+                    <a class="art-image lightbox-trigger" href="images/blue-hour.svg" aria-label="Enlarge Blue Hour"><img src="images/blue-hour.svg" alt="Blue arches and a pale moon on a deep blue background." width="600" height="750"><span class="art-enlarge" aria-hidden="true">View artwork ↗</span></a>
                     <figcaption>
                         <span class="art-type">Abstract</span>
                         <h3>Blue Hour</h3>
                         <p>Noah Vale <span aria-hidden="true">·</span> Digital illustration, 2026</p>
                     </figcaption>
                 </figure>
-                <figure class="art-card" id="still-life">
-                    <div class="art-image"><img src="images/still-life.svg" alt="A rust-colored vase with green leaves beside a golden pear." width="600" height="750"></div>
+                <figure class="art-card" id="still-life" data-category="still life" data-title="Sunday Still Life" data-artist="Lena Sol">
+                    <a class="art-image lightbox-trigger" href="images/still-life.svg" aria-label="Enlarge Sunday Still Life"><img src="images/still-life.svg" alt="A rust-colored vase with green leaves beside a golden pear." width="600" height="750"><span class="art-enlarge" aria-hidden="true">View artwork ↗</span></a>
                     <figcaption>
                         <span class="art-type">Still life</span>
                         <h3>Sunday Still Life</h3>
                         <p>Lena Sol <span aria-hidden="true">·</span> Digital illustration, 2026</p>
                     </figcaption>
                 </figure>
-                <figure class="art-card" id="warm-earth">
-                    <div class="art-image"><img src="images/warm-earth.svg" alt="Overlapping rust, ochre, and cream geometric forms." width="600" height="750" loading="lazy"></div>
+                <figure class="art-card" id="warm-earth" data-category="abstract" data-title="Warm Earth" data-artist="Mira Arden">
+                    <a class="art-image lightbox-trigger" href="images/warm-earth.svg" aria-label="Enlarge Warm Earth"><img src="images/warm-earth.svg" alt="Overlapping rust, ochre, and cream geometric forms." width="600" height="750" loading="lazy"><span class="art-enlarge" aria-hidden="true">View artwork ↗</span></a>
                     <figcaption>
                         <span class="art-type">Abstract</span>
                         <h3>Warm Earth</h3>
                         <p>Mira Arden <span aria-hidden="true">·</span> Digital illustration, 2026</p>
                     </figcaption>
                 </figure>
-                <figure class="art-card" id="garden-notes">
-                    <div class="art-image"><img src="images/garden-notes.svg" alt="Three simple leafy branches against a pale cream background." width="600" height="750" loading="lazy"></div>
+                <figure class="art-card" id="garden-notes" data-category="botanical" data-title="Garden Notes" data-artist="Lena Sol">
+                    <a class="art-image lightbox-trigger" href="images/garden-notes.svg" aria-label="Enlarge Garden Notes"><img src="images/garden-notes.svg" alt="Three simple leafy branches against a pale cream background." width="600" height="750" loading="lazy"><span class="art-enlarge" aria-hidden="true">View artwork ↗</span></a>
                     <figcaption>
                         <span class="art-type">Botanical</span>
                         <h3>Garden Notes</h3>
                         <p>Lena Sol <span aria-hidden="true">·</span> Digital illustration, 2026</p>
                     </figcaption>
                 </figure>
-                <figure class="art-card" id="coastal-lines">
-                    <div class="art-image"><img src="images/coastal-lines.svg" alt="A golden sun above curved bands of blue sea and sandy shore." width="600" height="750" loading="lazy"></div>
+                <figure class="art-card" id="coastal-lines" data-category="landscape" data-title="Coastal Lines" data-artist="Noah Vale">
+                    <a class="art-image lightbox-trigger" href="images/coastal-lines.svg" aria-label="Enlarge Coastal Lines"><img src="images/coastal-lines.svg" alt="A golden sun above curved bands of blue sea and sandy shore." width="600" height="750" loading="lazy"><span class="art-enlarge" aria-hidden="true">View artwork ↗</span></a>
                     <figcaption>
                         <span class="art-type">Landscape</span>
                         <h3>Coastal Lines</h3>
                         <p>Noah Vale <span aria-hidden="true">·</span> Digital illustration, 2026</p>
                     </figcaption>
                 </figure>
+            </div>
+            <div id="gallery-empty" class="gallery-empty" hidden>
+                <h3>No artworks found</h3>
+                <p>Try another title, artist, or category, or clear the search and filters above.</p>
             </div>
             <p class="caption-note">Original SVG illustrations made for this project. Artist names are fictional exhibition personas.</p>
         </section>
@@ -106,5 +135,19 @@
             </div>
         </div>
     </footer>
+    <!-- One reusable dialog displays whichever artwork the visitor selects. -->
+    <div id="art-lightbox" class="art-lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" aria-describedby="lightbox-help" tabindex="-1" hidden>
+        <div class="lightbox-panel">
+            <div class="lightbox-top"><p class="eyebrow">A closer look</p><button type="button" id="lightbox-close" class="lightbox-button" aria-label="Close artwork viewer">Close <span aria-hidden="true">×</span></button></div>
+            <div class="lightbox-image-wrap"><img id="lightbox-image" src="images/quiet-sun.svg" alt="A terracotta sun above layered green hills." width="600" height="750"></div>
+            <div class="lightbox-caption" aria-live="polite" aria-atomic="true"><h2 id="lightbox-title">Quiet Sun</h2><p id="lightbox-details">Mira Arden · Landscape · 2026</p></div>
+            <div class="lightbox-navigation">
+                <button type="button" id="lightbox-prev" class="lightbox-button" aria-label="Previous artwork"><span aria-hidden="true">←</span> <span class="lightbox-nav-label">Previous</span></button>
+                <p id="lightbox-counter" role="status" aria-live="polite">1 of 6</p>
+                <button type="button" id="lightbox-next" class="lightbox-button" aria-label="Next artwork"><span class="lightbox-nav-label">Next</span> <span aria-hidden="true">→</span></button>
+            </div>
+            <p id="lightbox-help" class="lightbox-help">Use the arrow keys to browse and Escape to close.</p>
+        </div>
+    </div>
 </body>
 </html>

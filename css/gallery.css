@@ -1,0 +1,227 @@
+/* Gallery controls extend the shared Atelier styles. */
+[hidden] {
+    display: none !important;
+}
+
+.gallery-controls {
+    padding-bottom: 25px;
+}
+
+.gallery-controls .caption-note {
+    margin: 8px 0 0;
+}
+
+.gallery-clear-wrap {
+    padding-bottom: 28px;
+    text-align: right;
+}
+
+.gallery-clear-wrap .btn {
+    padding: 12px 16px;
+    font-size: .85rem;
+}
+
+.gallery-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.filter-button {
+    padding: 8px 17px;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    color: var(--ink);
+    font-size: .85rem;
+}
+
+.filter-button:hover {
+    border-color: var(--accent);
+    background: var(--soft);
+    color: var(--accent);
+}
+
+.filter-button.active,
+.filter-button[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.gallery-result-count {
+    margin: 20px 0 0;
+    font-size: .85rem;
+}
+
+.lightbox-trigger {
+    position: relative;
+    display: block;
+}
+
+.art-enlarge {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    padding: 7px 11px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: .72rem;
+    opacity: .92;
+}
+
+.lightbox-trigger:hover .art-enlarge,
+.lightbox-trigger:focus .art-enlarge {
+    background: var(--accent);
+    color: white;
+}
+
+.gallery-empty {
+    padding: 45px 24px;
+    border: 1px dashed var(--line);
+    text-align: center;
+}
+
+.gallery-empty p {
+    margin-bottom: 0;
+}
+
+/* The dialog sits outside main so the rest of the page can be made inert. */
+body.lightbox-open {
+    overflow: hidden;
+}
+
+.art-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 24px;
+    background: rgba(25, 29, 25, .96);
+    color: var(--paper);
+}
+
+.lightbox-panel {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.lightbox-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.lightbox-top .eyebrow {
+    margin: 0;
+    color: #e2b29f;
+}
+
+.lightbox-button {
+    border: 1px solid #92978d;
+    padding: 7px 13px;
+    background: transparent;
+    color: var(--paper);
+    font: inherit;
+    font-size: .9rem;
+}
+
+.lightbox-button:hover,
+.lightbox-button:focus {
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.lightbox-button:disabled {
+    opacity: .4;
+    cursor: default;
+}
+
+.lightbox-image-wrap {
+    min-height: 120px;
+}
+
+#lightbox-image {
+    width: auto;
+    max-width: 100%;
+    max-height: calc(100dvh - 270px);
+    min-height: 120px;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.lightbox-caption {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.lightbox-caption h2 {
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+}
+
+.lightbox-caption p,
+.lightbox-help,
+#lightbox-counter {
+    color: #d2d5ca;
+    font-size: .8rem;
+}
+
+.lightbox-caption p {
+    margin: 0;
+}
+
+.lightbox-navigation {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 14px;
+    max-width: 600px;
+    margin: 18px auto 0;
+}
+
+#lightbox-prev {
+    justify-self: start;
+}
+
+#lightbox-next {
+    justify-self: end;
+}
+
+#lightbox-counter {
+    margin: 0;
+}
+
+.lightbox-help {
+    margin: 12px 0 0;
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .gallery-clear-wrap {
+        padding-bottom: 0;
+        text-align: left;
+    }
+
+    .gallery-filters {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+    .art-lightbox {
+        padding: 16px;
+    }
+
+    .lightbox-nav-label {
+        display: none;
+    }
+
+    .lightbox-button {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}

@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="vendor/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="vendor/jquery.min.js" defer></script>
+    <script src="js/script.js" defer></script>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -23,6 +25,7 @@
                 <a href="exhibitions.html" aria-current="page">Exhibitions</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
+                <a class="join-link" href="register.html">Join the gallery</a>
             </nav>
         </div>
     </header>
@@ -30,19 +33,67 @@
         <section class="page-heading container">
             <p class="eyebrow">03 / Atelier collection</p>
             <h1>A space to discover<span class="accent">.</span></h1>
-            <p class="page-intro">Explore our collection through three themed virtual exhibitions. Every exhibition is part of this student project and is available online.</p>
+            <p class="page-intro">Explore three themed virtual exhibitions, then curate your own guide. Add a new idea, change the details, and make room for a different perspective.</p>
         </section>
         <section class="container collection-section">
             <div class="row g-5 align-items-center exhibition-feature">
                 <div class="col-md-5"><img class="exhibition-image" src="images/coastal-lines.svg" alt="Coastal Lines: a golden sun above sea and sand" width="600" height="750"></div>
                 <div class="col-md-7"><p class="eyebrow">Featured / Virtual exhibition</p><h2>Between earth<br>&amp; sky</h2><p>From green hills to a blue shoreline, this pairing follows the meeting point of land, light, and open space.</p><p class="caption-note">Featuring Quiet Sun &amp; Coastal Lines</p><a class="btn gallery-button" href="gallery.html#quiet-sun">Enter the collection ↗</a></div>
             </div>
-            <div class="section-heading"><div><p class="eyebrow">Plan your browsing</p><h2>Exhibition guide</h2></div></div>
-            <div class="table-responsive">
-                <table class="exhibition-table">
-                    <caption>All exhibitions are free, virtual, and available at any time.</caption>
-                    <thead><tr><th scope="col">Exhibition</th><th scope="col">Theme</th><th scope="col">Featured works</th><th scope="col">Explore</th></tr></thead>
-                    <tbody>
+            <div class="section-heading" id="exhibition-planner">
+                <div><p class="eyebrow">A collection of your own</p><h2>Exhibition guide</h2></div>
+                <span class="record-count" id="exhibition-count" aria-live="polite">3 exhibitions</span>
+            </div>
+            <p id="planner-note">Curate a personal exhibition guide with the works in our collection. Your changes are saved in this browser on this device.</p>
+            <noscript><p class="alert alert-info">Enable JavaScript to add, edit, or delete exhibitions. You can still explore the three sample exhibitions below.</p></noscript>
+            <div id="exhibition-tools" hidden>
+                <form id="exhibition-form" class="exhibition-editor" aria-labelledby="editor-heading" aria-describedby="planner-note" novalidate>
+                    <h3 id="editor-heading">Add an exhibition</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="exhibition-title">Exhibition name <span class="required">*</span></label>
+                            <input class="form-control" id="exhibition-title" type="text" placeholder="Light in the garden" required minlength="2" maxlength="80" aria-describedby="exhibition-title-feedback">
+                            <p class="field-feedback" id="exhibition-title-feedback" aria-live="polite"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="exhibition-theme">Theme <span class="required">*</span></label>
+                            <input class="form-control" id="exhibition-theme" type="text" placeholder="Nature and color" required minlength="2" maxlength="60" aria-describedby="exhibition-theme-feedback">
+                            <p class="field-feedback" id="exhibition-theme-feedback" aria-live="polite"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="exhibition-works">Featured works <span class="required">*</span></label>
+                            <input class="form-control" id="exhibition-works" type="text" placeholder="Garden Notes, Quiet Sun" required minlength="2" maxlength="160" aria-describedby="exhibition-works-feedback">
+                            <p class="field-feedback" id="exhibition-works-feedback" aria-live="polite"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="exhibition-artwork">Start exploring at</label>
+                            <select class="form-select" id="exhibition-artwork">
+                                <option value="quiet-sun">Quiet Sun</option>
+                                <option value="blue-hour">Blue Hour</option>
+                                <option value="still-life">Sunday Still Life</option>
+                                <option value="warm-earth">Warm Earth</option>
+                                <option value="garden-notes">Garden Notes</option>
+                                <option value="coastal-lines">Coastal Lines</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap gap-3 mt-3">
+                        <button type="submit" class="btn gallery-button" id="save-exhibition">Add exhibition</button>
+                        <button type="button" class="btn outline-button" id="cancel-edit" hidden>Cancel edit</button>
+                    </div>
+                </form>
+                <div class="planner-toolbar">
+                    <p class="caption-note mb-0">Edit any row below, or start again with the original three exhibitions.</p>
+                    <button type="button" class="table-button" id="reset-exhibitions">Restore sample exhibitions</button>
+                </div>
+                <p id="exhibition-status" class="status-message" role="status"></p>
+                <p id="storage-warning" class="alert alert-warning" role="status" hidden></p>
+            </div>
+            <div class="table-responsive" tabindex="0" role="region" aria-label="Exhibition guide table, scroll horizontally on small screens">
+                <table class="exhibition-table table" id="exhibition-table">
+                    <caption>All exhibitions are free and virtual. Custom records belong to your personal guide.</caption>
+                    <thead><tr><th scope="col">Exhibition</th><th scope="col">Theme</th><th scope="col">Featured works</th><th scope="col">Explore</th><th scope="col" class="crud-only" hidden>Actions</th></tr></thead>
+                    <tbody id="exhibition-rows">
                         <tr><th scope="row">Between earth &amp; sky</th><td>Landscapes</td><td>Quiet Sun, Coastal Lines</td><td><a href="gallery.html#quiet-sun">View works ↗</a></td></tr>
                         <tr><th scope="row">The shape of silence</th><td>Abstract forms</td><td>Blue Hour, Warm Earth</td><td><a href="gallery.html#blue-hour">View works ↗</a></td></tr>
                         <tr><th scope="row">Ordinary wonders</th><td>Nature &amp; still life</td><td>Sunday Still Life, Garden Notes</td><td><a href="gallery.html#still-life">View works ↗</a></td></tr>

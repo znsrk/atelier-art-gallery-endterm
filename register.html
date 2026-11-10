@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Atelier is a student art gallery featuring original illustrations, imaginary artists, and virtual exhibitions.">
+    <title>Join the gallery | Atelier Art Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <script src="vendor/jquery.min.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/forms.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="index.html" aria-label="Atelier home"><span class="logo-mark" aria-hidden="true">a.</span> atelier<span class="logo-dot">.</span></a>
+            <nav aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="artists.html">Artists</a>
+                <a href="exhibitions.html">Exhibitions</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a class="join-link" href="register.html" aria-current="page">Join the gallery</a>
+            </nav>
+        </div>
+    </header>
+    <main id="main-content">
+        <section class="page-heading container">
+            <p class="eyebrow">06 / Join the gallery</p>
+            <h1>A place for art lovers<span class="accent">.</span></h1>
+            <p class="page-intro">Try our gallery registration demo. Explore clear, instant guidance as you fill in your details.</p>
+        </section>
+        <section class="container collection-section" aria-label="Gallery registration demo">
+            <div class="row g-5">
+                <div class="col-md-5 contact-copy">
+                    <p class="eyebrow">Join the conversation</p>
+                    <h2>A new perspective<br>starts with you.</h2>
+                    <p>Get to know the collection through a simple, guided registration experience.</p>
+                    <ul class="registration-benefits">
+                        <li>See feedback as you complete each field.</li>
+                        <li>Discover what makes a stronger password.</li>
+                        <li>Check your details before completing the demo.</li>
+                    </ul>
+                    <div class="contact-note" id="registration-note">
+                        <h3>A browser-only demo</h3>
+                        <p>Use sample details and a password you do not use elsewhere. This exercise checks your form in the browser. It does not create an account, send your details, or save your password.</p>
+                        <a class="text-link" href="gallery.html">Explore the collection &#8599;</a>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <noscript><p class="alert alert-warning">Enable JavaScript to try the registration demo and password strength indicator.</p></noscript>
+                    <form id="registration-form" class="contact-form" aria-describedby="registration-note" novalidate>
+                        <div id="registration-errors" class="alert alert-danger form-alert" role="alert" hidden>Please correct the highlighted fields before completing the demo.</div>
+                        <div id="registration-success" class="alert alert-success form-alert" role="status" tabindex="-1" hidden>
+                            <strong>Registration demo complete.</strong>
+                            <p>Your details passed validation and have been cleared. No account was created and no information was saved.</p>
+                            <a class="text-link" href="gallery.html">Browse the artwork &#8599;</a>
+                        </div>
+                        <div class="mb-4">
+                            <label for="register-name" class="form-label">Your name <span class="required">*</span></label>
+                            <input type="text" id="register-name" class="form-control" placeholder="Alex Smith" autocomplete="name" maxlength="100" aria-describedby="register-name-feedback" required>
+                            <p id="register-name-feedback" class="field-feedback" aria-live="polite"></p>
+                        </div>
+                        <div class="mb-4">
+                            <label for="register-email" class="form-label">Email address <span class="required">*</span></label>
+                            <input type="email" id="register-email" class="form-control" placeholder="alex@example.com" autocomplete="email" maxlength="150" aria-describedby="register-email-feedback" required>
+                            <p id="register-email-feedback" class="field-feedback" aria-live="polite"></p>
+                        </div>
+                        <div class="mb-4">
+                            <label for="register-password" class="form-label">Password <span class="required">*</span></label>
+                            <input type="password" id="register-password" class="form-control" placeholder="Create a sample password" autocomplete="new-password" minlength="8" maxlength="128" aria-describedby="password-hint password-strength-label register-password-feedback" required>
+                            <p id="password-hint" class="form-hint">Use at least 8 characters with uppercase and lowercase letters and a number (medium). For strong, use 12 or more characters and add a symbol.</p>
+                            <div id="password-strength" class="password-meter" data-strength="0" role="meter" aria-label="Password strength" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" aria-valuetext="Not entered">
+                                <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+                            </div>
+                            <p id="password-strength-label" class="password-strength-label" aria-live="polite">Password strength: Not entered</p>
+                            <p id="register-password-feedback" class="field-feedback" aria-live="polite"></p>
+                        </div>
+                        <div class="mb-2">
+                            <label for="register-confirm" class="form-label">Confirm password <span class="required">*</span></label>
+                            <input type="password" id="register-confirm" class="form-control" placeholder="Repeat your sample password" autocomplete="new-password" maxlength="128" aria-describedby="register-confirm-feedback" required>
+                            <p id="register-confirm-feedback" class="field-feedback" aria-live="polite"></p>
+                        </div>
+                        <button id="toggle-passwords" type="button" class="password-toggle" aria-pressed="false" aria-controls="register-password register-confirm" disabled>Show passwords</button>
+                        <p class="caption-note">* Required fields. Medium or strong passwords are accepted. Use sample details only.</p>
+                        <div class="form-actions">
+                            <button id="registration-submit" type="submit" class="btn gallery-button" disabled>Complete registration demo &#8599;</button>
+                            <button type="reset" class="btn outline-button">Clear form</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div>
+                    <a class="footer-logo" href="index.html">atelier.</a>
+                    <p>A little space for a different perspective.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="contact.html">Contact the project team</a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+                    <a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer">Pinterest ↗</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Atelier · Student art gallery project</p>
+                <p>Zhanserik Zharylgassyn &amp; Erkebulan Korganbek</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

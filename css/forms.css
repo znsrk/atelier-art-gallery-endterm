@@ -1,0 +1,93 @@
+/* Registration and contact share the same field feedback. */
+.field-feedback {
+    min-height: 1.4em;
+    margin: 6px 0 0;
+    font-size: .8rem;
+}
+
+.field-feedback.error-text {
+    color: #9c2f27;
+}
+
+.field-feedback.success-text {
+    color: #365e40;
+}
+
+.form-hint {
+    margin: 8px 0 0;
+    font-size: .8rem;
+}
+
+.form-alert {
+    border-radius: 0;
+    margin-bottom: 24px;
+}
+
+.form-alert p:last-child {
+    margin-bottom: 0;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.password-meter {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 14px;
+}
+
+.password-meter span {
+    height: 5px;
+    background: #cfcbbe;
+}
+
+.password-meter[data-strength="1"] span:first-child {
+    background: #a3462f;
+}
+
+.password-meter[data-strength="2"] span:nth-child(-n+2) {
+    background: #8a681d;
+}
+
+.password-meter[data-strength="3"] span {
+    background: #365e40;
+}
+
+.password-strength-label {
+    font-size: .8rem;
+    margin: 6px 0 0;
+}
+
+.password-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 0;
+    margin-bottom: 18px;
+    border: 0;
+    background: transparent;
+    color: var(--accent);
+    font-size: .8rem;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.registration-benefits {
+    padding-left: 20px;
+    color: var(--muted);
+}
+
+.registration-benefits li {
+    padding-bottom: 10px;
+}
+
+@media (max-width: 400px) {
+    .form-actions .btn {
+        width: 100%;
+    }
+}
